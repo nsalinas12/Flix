@@ -16,6 +16,7 @@
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (nonatomic, strong ) NSArray *movies;
 @property (nonatomic, strong ) UIRefreshControl *refreshControl;
+@property (weak, nonatomic) IBOutlet UIActivityIndicatorView *activityIndicator;
 
 @end
 
@@ -23,6 +24,8 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    [self.activityIndicator startAnimating];
     
     
     self.tableView.dataSource = self;
@@ -40,6 +43,7 @@
 }
 
 - (void)fetchMovies  {
+    
     
     NSURL *url = [NSURL URLWithString:@"https://api.themoviedb.org/3/movie/now_playing?api_key=a07e22bc18f5cb106bfe4cc1f83ad8ed"];
     NSURLRequest *request = [NSURLRequest requestWithURL:url cachePolicy:NSURLRequestReloadIgnoringLocalCacheData timeoutInterval:10.0];
@@ -66,6 +70,7 @@
         
         [self.refreshControl endRefreshing];
     }];
+    [self.activityIndicator stopAnimating];
     [task resume];
 }
 

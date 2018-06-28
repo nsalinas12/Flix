@@ -14,6 +14,7 @@
 @property (weak, nonatomic) IBOutlet UIImageView *posterView;
 @property (weak, nonatomic) IBOutlet UILabel *titleLabel;
 @property (weak, nonatomic) IBOutlet UILabel *synopsisLabel;
+@property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
 
 
 
@@ -29,7 +30,7 @@
     NSString *fullPosterURLString = [baseURLString stringByAppendingString:posterURLString];
     NSURL *posterURL = [NSURL URLWithString:fullPosterURLString];
     [self.posterView setImageWithURL:posterURL];
-    
+   
     
     NSString *backdropURLString = self.movie[@"backdrop_path"];
     NSString *fullBackdropURLString = [baseURLString stringByAppendingString:backdropURLString];
@@ -41,6 +42,11 @@
     
     [self.titleLabel sizeToFit];
     [self.synopsisLabel sizeToFit];
+    
+    CGFloat maxHeight = self.synopsisLabel.frame.origin.y  + self.synopsisLabel.frame.size.height + 30;
+    
+    self.scrollView.contentSize = CGSizeMake(self.scrollView.frame.size.width, maxHeight);
+
 }
 
 - (void)didReceiveMemoryWarning {
