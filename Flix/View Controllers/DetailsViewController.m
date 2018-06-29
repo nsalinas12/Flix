@@ -15,8 +15,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *titleLabel;
 @property (weak, nonatomic) IBOutlet UILabel *synopsisLabel;
 @property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
-
-
+@property (weak, nonatomic) IBOutlet UILabel *genreLabel;
 
 
 @end
@@ -37,9 +36,12 @@
     NSURL *backdropURL = [NSURL URLWithString:fullBackdropURLString];
     [self.backdropView setImageWithURL:backdropURL];
     
+    NSNumber *genreNumber = self.movie[@"genre_ids"][0];
+    
+    
+    
     self.titleLabel.text = self.movie[@"title"];
     self.synopsisLabel.text = self.movie[@"overview"];
-    
     [self.titleLabel sizeToFit];
     [self.synopsisLabel sizeToFit];
     
