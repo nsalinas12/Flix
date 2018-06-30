@@ -33,6 +33,7 @@
     [self.posterView setImageWithURL:posterURL];
     
     [self fetchGenre];
+    [self fetchReleaseDate];
     
     NSString *backdropURLString = self.movie[@"backdrop_path"];
     NSString *fullBackdropURLString = [baseURLString stringByAppendingString:backdropURLString];
@@ -67,7 +68,22 @@
     
     NSString *unformattedReleaseDate = self.movie[@"release_date"];
     
-    self.releaseDateLabel = unformattedReleaseDate;
+    self.releaseDateLabel.text = unformattedReleaseDate;
+    
+    /*
+    NSString *str = unformattedReleaseDate; /// here this is your date with format yyyy-MM-dd
+    
+    NSDateFormatter *dateFormatter = [[[NSDateFormatter alloc] init] autorelease]; // here we create NSDateFormatter object for change the Format of date..
+    [dateFormatter setDateFormat:@"yyyy-MM-dd"]; //// here set format of date which is in your output date (means above str with format)
+    
+    NSDate *date = [dateFormatter dateFromString: str]; // here you can fetch date from string with define format
+    
+    dateFormatter = [[[NSDateFormatter alloc] init] autorelease];
+    [dateFormatter setDateFormat:@"dd/MM/yyyy"];// here set format which you want...
+    
+    NSString *convertedString = [dateFormatter stringFromDate:date]; //here convert date in NSString
+    NSLog(@"Converted String : %@",convertedString);*/
+    
     
     
 }
