@@ -18,6 +18,8 @@
 		C04E010920E565B4007100D8 /* DetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C04E010820E565B4007100D8 /* DetailsViewController.m */; };
 		C04E010C20E584A9007100D8 /* MoviesGridViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C04E010B20E584A9007100D8 /* MoviesGridViewController.m */; };
 		C04E010F20E58782007100D8 /* MovieCollectionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C04E010E20E58782007100D8 /* MovieCollectionCell.m */; };
+		C0EC958F20EA9BA900C135FC /* Movie.m in Sources */ = {isa = PBXBuildFile; fileRef = C0EC958E20EA9BA900C135FC /* Movie.m */; };
+		C0EC959220EAAAF300C135FC /* MovieAPIManager.m in Sources */ = {isa = PBXBuildFile; fileRef = C0EC959120EAAAF300C135FC /* MovieAPIManager.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -40,6 +42,10 @@
 		C04E010B20E584A9007100D8 /* MoviesGridViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MoviesGridViewController.m; sourceTree = "<group>"; };
 		C04E010D20E58782007100D8 /* MovieCollectionCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MovieCollectionCell.h; sourceTree = "<group>"; };
 		C04E010E20E58782007100D8 /* MovieCollectionCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MovieCollectionCell.m; sourceTree = "<group>"; };
+		C0EC958D20EA9BA900C135FC /* Movie.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Movie.h; sourceTree = "<group>"; };
+		C0EC958E20EA9BA900C135FC /* Movie.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Movie.m; sourceTree = "<group>"; };
+		C0EC959020EAAAF300C135FC /* MovieAPIManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MovieAPIManager.h; sourceTree = "<group>"; };
+		C0EC959120EAAAF300C135FC /* MovieAPIManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MovieAPIManager.m; sourceTree = "<group>"; };
 		DAE29FDCA611117847FD0E67 /* libPods-Flix.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Flix.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		ECABA6B7F8BEEF3B4CF27A64 /* Pods-Flix.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Flix.release.xcconfig"; path = "Pods/Target Support Files/Pods-Flix/Pods-Flix.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -85,6 +91,8 @@
 		C01A640620E40A15000A705F /* Flix */ = {
 			isa = PBXGroup;
 			children = (
+				C0EC959020EAAAF300C135FC /* MovieAPIManager.h */,
+				C0EC959120EAAAF300C135FC /* MovieAPIManager.m */,
 				C01A642220E41274000A705F /* Models */,
 				C01A642120E4126A000A705F /* View Controllers */,
 				C01A642020E41263000A705F /* Views */,
@@ -126,6 +134,8 @@
 		C01A642220E41274000A705F /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				C0EC958D20EA9BA900C135FC /* Movie.h */,
+				C0EC958E20EA9BA900C135FC /* Movie.m */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -233,10 +243,12 @@
 			files = (
 				C01A641720E40A17000A705F /* main.m in Sources */,
 				C04E010920E565B4007100D8 /* DetailsViewController.m in Sources */,
+				C0EC958F20EA9BA900C135FC /* Movie.m in Sources */,
 				C01A640920E40A16000A705F /* AppDelegate.m in Sources */,
 				C04E010F20E58782007100D8 /* MovieCollectionCell.m in Sources */,
 				C04E010620E553F5007100D8 /* MovieCell.m in Sources */,
 				C01A641F20E41140000A705F /* MoviesViewController.m in Sources */,
+				C0EC959220EAAAF300C135FC /* MovieAPIManager.m in Sources */,
 				C04E010C20E584A9007100D8 /* MoviesGridViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

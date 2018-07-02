@@ -9,6 +9,8 @@
 
 #import "DetailsViewController.h"
 #import "UIImageView+AFNetworking.h"
+#import "Movie.h"
+#import "MovieCell.h"
 
 @interface DetailsViewController ()
 @property (weak, nonatomic) IBOutlet UIImageView *backdropView;
@@ -20,6 +22,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *releaseDateLabel;
 
 
+
 @end
 
 @implementation DetailsViewController
@@ -27,7 +30,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     NSString *baseURLString = @"https://image.tmdb.org/t/p/original";
-    NSString *posterURLString = self.movie[@"poster_path"];
+    NSString *posterURLString = self.movie.posterUrl;
     NSString *fullPosterURLString = [baseURLString stringByAppendingString:posterURLString];
     NSURL *posterURL = [NSURL URLWithString:fullPosterURLString];
     [self.posterView setImageWithURL:posterURL];
@@ -35,14 +38,14 @@
     [self fetchGenre];
     [self fetchReleaseDate];
     
-    NSString *backdropURLString = self.movie[@"backdrop_path"];
+    NSString *backdropURLString = self.movie.posterUrl;
     NSString *fullBackdropURLString = [baseURLString stringByAppendingString:backdropURLString];
     NSURL *backdropURL = [NSURL URLWithString:fullBackdropURLString];
     [self.backdropView setImageWithURL:backdropURL];
     
     
-    self.titleLabel.text = self.movie[@"title"];
-    self.synopsisLabel.text = self.movie[@"overview"];
+    self.titleLabel.text = self.movie.title;
+    self.synopsisLabel.text = self.movie.synopsis;
     [self.titleLabel sizeToFit];
     [self.synopsisLabel sizeToFit];
     
@@ -52,6 +55,7 @@
     
 }
 
+/*
 - (void) fetchGenre {
     
      NSNumber *originalGenreID = self.movie[@"genre_ids"][0];
@@ -62,7 +66,9 @@
     
     self.genreLabel.text = genreLabelText;
     
-}
+} */
+
+/*
 
 - (void) fetchReleaseDate {
     
@@ -82,13 +88,13 @@
     [dateFormatter setDateFormat:@"dd/MM/yyyy"];// here set format which you want...
     
     NSString *convertedString = [dateFormatter stringFromDate:date]; //here convert date in NSString
-    NSLog(@"Converted String : %@",convertedString);*/
+    NSLog(@"Converted String : %@",convertedString);
     
     
     
 }
 
-
+*/
 
 
 - (void)didReceiveMemoryWarning {

@@ -7,9 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "Movie.h"
 
 @interface DetailsViewController : UIViewController
 
-@property (nonatomic, strong) NSDictionary *movie;
+@property (nonatomic, strong) NSDictionary *movieDictionary;
+@property (weak, nonatomic) Movie *movie;
 
 @end

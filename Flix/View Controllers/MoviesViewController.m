@@ -10,11 +10,12 @@
 #import "MovieCell.h"
 #import "UIImageView+AFNetworking.h"
 #import "DetailsViewController.h"
+#import "Movie.h"
 
 @interface MoviesViewController () <UITableViewDataSource, UITableViewDelegate, UISearchBarDelegate>
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
-@property (nonatomic, strong ) NSArray *movies;
+@property (nonatomic, strong ) NSMutableArray *movies;
 @property (nonatomic, strong ) UIRefreshControl *refreshControl;
 @property (weak, nonatomic) IBOutlet UIActivityIndicatorView *activityIndicator;
 @property (weak, nonatomic) IBOutlet UISearchBar *searchBar;
@@ -65,9 +66,14 @@
             
             self.filteredData = self.movies;
             
-            for( NSDictionary *movie in self.movies ){
-                NSLog(@"%@", movie[@"title"]);
+            NSArray *dictionaries = dataDictionary[@"results"];
+            
+            for (NSDictionary *dictionary in dictionaries) {
+                Movie *movie = [[Movie alloc] initWithDictionary:dictionary];
+                
+                [self.movies addObject:movie];
             }
+            
             
             [self.tableView reloadData];
 
@@ -90,20 +96,37 @@
     return self.filteredData.count;
 }
 
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    
+    MovieCell *cell = [tableView dequeueReusableCellWithIdentifier:@"MovieCell"];
+    
+    cell.movie = self.movies[indexPath.row];
+    
+    return cell;
+}
+
+
+/*
+
+
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     
     MovieCell *cell = [tableView dequeueReusableCellWithIdentifier:@"MovieCell" forIndexPath:indexPath];
     
-    NSDictionary *movie = self.filteredData[indexPath.row];
+    NSDictionary *movieDictionary = self.filteredData[indexPath.row];
     
-    cell.titleLabel.text = movie[@"title"];
-    cell.synopsisLabel.text = movie[@"overview"];
+    //cell.titleLabel.text = movieDictionary[@"title"];
+   // cell.synopsisLabel.text = movieDictionary[@"overview"];
     
-    [cell.titleLabel sizeToFit];
-    [cell.synopsisLabel sizeToFit];
+   // [cell.titleLabel sizeToFit];
+   // [cell.synopsisLabel sizeToFit];
+     
+ 
+    
+    cell.movie = self.movies[indexPath.row];
     
     NSString *baseURLString = @"https://image.tmdb.org/t/p/w500";
-    NSString *posterURLString = movie[@"poster_path"];
+    NSString *posterURLString = movieDictionary[@"poster_path"];
     NSString *fullPosterURLString = [baseURLString stringByAppendingString:posterURLString];
     NSURL *posterURL = [NSURL URLWithString:fullPosterURLString];
     cell.posterView.image = nil; 
@@ -113,7 +136,16 @@
     
     return cell;
 }
+*/
 
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    
+    MovieCell *cell = [tableView dequeueReusableCellWithIdentifier:@"MovieCell"];
+    
+    cell.movie = self.movies[indexPath.row];
+    
+    return cell;
+}
 
 - (void) tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     
@@ -164,7 +196,8 @@
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     UITableViewCell *tappedCell = sender;
     NSIndexPath *indexPath = [self.tableView indexPathForCell:tappedCell];
-    NSDictionary *movie = self.filteredData[indexPath.row];
+    
+    Movie *movie = self.movies[indexPath.row];
     
     DetailsViewController * detailViewController = [segue destinationViewController];
     
